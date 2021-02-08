@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="19dp"
+    app:cardBackgroundColor="#F5F5F5"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_medium"
+            android:maxLines="1"
+            android:text="Socorro Gás"
+            android:textColor="@color/black"
+            android:textSize="21sp"
+            app:layout_constraintEnd_toStartOf="@+id/iv_favorite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_favorite"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/icon_heart_outline"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_title"
+            app:layout_constraintTop_toTopOf="@+id/tv_title" />
+
+        <TextView
+            android:id="@+id/tv_sutitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8.5dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto"
+            android:maxLines="2"
+            android:text="Transporte e recarrega todos os tamanhos de cilindro de R$ 150 a R$ 700"
+            android:textColor="#50000000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:drawablePadding="10dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_light"
+            android:maxLines="1"
+            android:text="Av Contorno Norte, 1534, Armando Mendes"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:drawableStartCompat="@drawable/icon_marker"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sutitle" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:drawablePadding="10dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_light"
+            android:maxLines="1"
+            android:text="08:00 às 17:00"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:drawableStartCompat="@drawable/icon_clock"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_location" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_call"
+            android:layout_width="114dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="13dp"
+            app:cardBackgroundColor="@color/green_main"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_time">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_phone" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_wpp"
+            android:layout_width="57dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="24dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="21dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/card_call"
+            app:layout_constraintTop_toBottomOf="@+id/tv_time">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_wpp" />
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
