@@ -18,3 +18,17 @@ RELEASE_KEY_PASSWORD=[PASSOWRD]
 3. Install on ```app/``` project  ```google-services.json```
 4. Create a [keystore](https://developer.android.com/studio/publish/app-signing) to signing your apk (if you have this keystore, skip this step)
 5. Install your keystore (```.jks```) in ```app/``` project 
+
+
+## Demo
+
+![Demo](https://github.com/thiagomarquesrocha/disko2/blob/main/images/demo.gif)
+
+#### Splash Screen
+![Splash](https://github.com/thiagomarquesrocha/disko2/blob/main/images/1_spash_screen.png)
+
+#### Oxygen Places
+![Places](https://github.com/thiagomarquesrocha/disko2/blob/main/images/2_places.png)
+
+#### Favorites Places
+![Favorites](https://github.com/thiagomarquesrocha/disko2/blob/main/images/3_favorites.png)
