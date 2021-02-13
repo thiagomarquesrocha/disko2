@@ -54,9 +54,10 @@ class PlaceViewModel(application: Application) : AndroidViewModel(application), 
                 placeO2.photo,
                 placeO2.type,
                 placeO2.favorite,
+                placeO2.key,
                 placeO2.id
             )
-            val value = placeDao.getPlaceByName(placeAux.name)
+            val value = placeDao.getPlaceByKey(placeAux.key)
             placeAux.favorite = if (value.favorite == 0) 1 else 0
             placeDao.update(placeAux)
         }
@@ -69,7 +70,7 @@ class PlaceViewModel(application: Application) : AndroidViewModel(application), 
     @Suppress("IMPLICIT_CAST_TO_ANY")
     private fun saveInDatabaseLocal(placeO2: PlaceO2) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
-            val resultQuery = placeDao.getPlaceByName(placeO2.name)
+            val resultQuery = placeDao.getPlaceByKey(placeO2.key)
             if (resultQuery == null) {
                 placeDao.insert(placeO2)
             } else {
@@ -178,7 +179,9 @@ class PlaceViewModel(application: Application) : AndroidViewModel(application), 
 
     override fun onDataChange(snapshot: DataSnapshot) {
         for (child in snapshot.children) {
+            Log.d("COSTA", "teste = ${child.key}")
             val place = child.getValue(PlaceO2::class.java)
+            place?.key = child.key.toString()
             place?.let { saveInDatabaseLocal(it) }
         }
     }
