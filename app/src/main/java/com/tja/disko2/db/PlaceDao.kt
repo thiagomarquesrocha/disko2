@@ -14,7 +14,10 @@ interface PlaceDao {
     fun getAllFavorite(): LiveData<List<PlaceO2>>
 
     @Query("SELECT * FROM place_items WHERE name =:name")
-    fun getPlaceByName(name : String) : PlaceO2
+    fun getPlaceByName(name: String): PlaceO2
+
+    @Query("SELECT * FROM place_items WHERE key_firebase =:key")
+    fun getPlaceByKey(key: String): PlaceO2
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(vararg placeO2: PlaceO2)
