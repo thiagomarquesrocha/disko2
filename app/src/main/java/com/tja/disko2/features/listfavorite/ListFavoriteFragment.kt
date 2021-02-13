@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.tja.disko2.R
 import com.tja.disko2.domain.PlaceO2
+import com.tja.disko2.features.aboutplace.AboutPlaceActivity
 import com.tja.disko2.features.listplace.AdapterPlaceList
 import com.tja.disko2.features.listplace.PlaceViewModel
 import com.tja.disko2.features.util.MyViewModelFactory
@@ -79,7 +80,7 @@ class ListFavoriteFragment : Fragment() {
         if (itemView.id == R.id.iv_favorite) {
             viewModel.favorite(placeO2)
         } else if (itemView.id == R.id.container) {
-            Log.d("COSTA", "Open Other Activity")
+            AboutPlaceActivity.openAboutPlaceActivity(requireActivity(),placeO2)
         }
     }
 

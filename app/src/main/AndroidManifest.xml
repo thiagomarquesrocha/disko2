@@ -13,8 +13,8 @@
         android:theme="@style/Theme.DiskO2">
 
         <activity
-            android:theme="@style/ThemeSplash"
-            android:name=".features.splash.SplashActivity">
+            android:name=".features.splash.SplashActivity"
+            android:theme="@style/ThemeSplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,6 +25,8 @@
         <activity android:name=".features.listplace.MainActivity">
 
         </activity>
+
+        <activity android:name=".features.aboutplace.AboutPlaceActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

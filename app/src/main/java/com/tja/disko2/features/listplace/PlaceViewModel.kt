@@ -155,6 +155,7 @@ class PlaceViewModel(application: Application) : AndroidViewModel(application), 
 
     }
 
+
     /**
      * Get number phone
      */
@@ -176,7 +177,6 @@ class PlaceViewModel(application: Application) : AndroidViewModel(application), 
     }
 
     override fun onDataChange(snapshot: DataSnapshot) {
-        Log.d("COSTA", "FIREBASE - " + snapshot.children.toString())
         for (child in snapshot.children) {
             val place = child.getValue(PlaceO2::class.java)
             place?.let { saveInDatabaseLocal(it) }

@@ -3,7 +3,6 @@ package com.tja.disko2.features.listplace
 import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -12,12 +11,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.tja.disko2.R
 import com.tja.disko2.domain.PlaceO2
+import com.tja.disko2.features.aboutplace.AboutPlaceActivity
 import com.tja.disko2.features.util.MyViewModelFactory
 
 class ListPlaceFragment : Fragment() {
 
     private lateinit var viewModel: PlaceViewModel
-    private lateinit var adapter : AdapterPlaceList
+    private lateinit var adapter: AdapterPlaceList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,10 +80,10 @@ class ListPlaceFragment : Fragment() {
         if (itemView.id == R.id.iv_favorite) {
             viewModel.favorite(placeO2)
         } else if (itemView.id == R.id.container) {
-            Log.d("COSTA", "Open Other Activity")
-        }else if (itemView.id == R.id.card_call){
+            AboutPlaceActivity.openAboutPlaceActivity(requireActivity(), placeO2)
+        } else if (itemView.id == R.id.card_call) {
             viewModel.intentCall(placeO2)
-        }else if (itemView.id == R.id.card_wpp){
+        } else if (itemView.id == R.id.card_wpp) {
             viewModel.intentWpp(placeO2)
         }
     }

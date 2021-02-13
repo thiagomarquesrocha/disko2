@@ -55,7 +55,9 @@ class AdapterPlaceList() :
             tvTitle.text = placeO2.name
             val tvSubTitle = itemView.findViewById<TextView>(R.id.tv_sutitle)
             val tvLocation = itemView.findViewById<TextView>(R.id.tv_location)
-            tvLocation.text = if (placeO2.address.isEmpty()) "Sem endereço" else placeO2.address
+
+            tvLocation.text =
+                if (placeO2.address.isEmpty()) itemView.context.getString(R.string.place_not_address) else placeO2.address
             val ivFavorite = itemView.findViewById<ImageView>(R.id.iv_favorite)
             val container = itemView.findViewById<ConstraintLayout>(R.id.container)
             val cardWpp = itemView.findViewById<CardView>(R.id.card_wpp)
@@ -71,13 +73,13 @@ class AdapterPlaceList() :
             //Types
             when (placeO2.type) {
                 1 -> {
-                    tvSubTitle.text = "Oxigênio medicinal (sem aluguel ou venda de cilindro)"
+                    tvSubTitle.text = itemView.context.getString(R.string.place_type_1)
                 }
                 2 -> {
-                    tvSubTitle.text = "Cilindros e recargas"
+                    tvSubTitle.text = itemView.context.getString(R.string.place_type_2)
                 }
                 3 -> {
-                    tvSubTitle.text = "Atendimento em casa, cilindros e recargas"
+                    tvSubTitle.text = itemView.context.getString(R.string.place_type_3)
                 }
             }
 

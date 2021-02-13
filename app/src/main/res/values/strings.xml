@@ -4,4 +4,21 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tab_text_1">Todos</string>
     <string name="tab_text_2">Favoritos</string>
+
+    <!-- MENU -->
+    <string name="menu_search">Pesquisar</string>
+    <string name="menu_share">Compartilhar</string>
+
+    <!-- DEFAULT -->
+    <string name="place_hour">08:00 às 17:00</string>
+    <string name="place_status">STATUS DO LOCAL</string>
+
+    <!-- Exception -->
+    <string name="place_not_address">Sem endereço</string>
+
+    <!-- Place Type -->
+    <string name="place_type_1">Oxigênio medicinal (sem aluguel ou venda de cilindro)</string>
+    <string name="place_type_2">Cilindros e recargas</string>
+    <string name="place_type_3">Atendimento em casa, cilindros e recargas</string>
+
 </resources>
