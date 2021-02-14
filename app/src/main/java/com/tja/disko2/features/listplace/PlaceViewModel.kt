@@ -114,30 +114,21 @@ class PlaceViewModel(application: Application) : AndroidViewModel(application), 
 
     /**
      * Intent to open Whatsapp
+     *  Inspired on https://stackoverflow.com/questions/19081654/send-text-to-specific-contact-programmatically-whatsapp
      */
     fun intentWpp(placeO2: PlaceO2) {
         try {
-            val packageManager: PackageManager = context.packageManager
             val i = Intent(Intent.ACTION_VIEW)
-            val url = "https://api.whatsapp.com/send?phone=" + getNumberPhone(false, placeO2)
-            packageManager.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES)
+            val url = "https://wa.me/" + getNumberPhone(false, placeO2)
             i.setPackage("com.whatsapp")
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             i.data = Uri.parse(url)
-            if (i.resolveActivity(packageManager) != null) {
-                context.startActivity(i)
-            } else {
-                Toast.makeText(
-                    context,
-                    "Verifique se você tem o Whatsapp instalado.",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
+            context.startActivity(i)
         } catch (e: Exception) {
             Log.e("COSTA", e.toString())
             Toast.makeText(
                 context,
-                "Erro ao tentar abrir o Whatsapp, tente ligar.",
+                "Não foi possível abrir o Whatsapp, tente ligar.",
                 Toast.LENGTH_LONG
             ).show()
         }
@@ -154,7 +145,6 @@ class PlaceViewModel(application: Application) : AndroidViewModel(application), 
         } catch (e: java.lang.Exception) {
             Toast.makeText(context, "Erro ao tentar iniciar o discador.", Toast.LENGTH_LONG).show()
         }
-
     }
 
 
@@ -164,12 +154,19 @@ class PlaceViewModel(application: Application) : AndroidViewModel(application), 
     private fun getNumberPhone(isIntentCall: Boolean, placeO2: PlaceO2): String {
         val split = placeO2.phone.split("/")
         if (!isIntentCall) {
-            return split[0]
+            return cleanPhoneNumber(split[0])
         }
         if (split.size > 1) {
-            return split[1]
+            return cleanPhoneNumber(split[1])
         }
-        return split[0]
+        return cleanPhoneNumber(split[0])
+    }
+
+    /**
+     * Clean phone number +- and white spaces
+     */
+    private fun cleanPhoneNumber(number: String) : String{
+        return number.replace("+", "").replace(" ", "").replace("-","")
     }
 
     //FIREBASE CONFIG AND Callbacks
