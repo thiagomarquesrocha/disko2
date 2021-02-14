@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.tja.disko2.domain.PlaceO2
 
-@Database(entities = [PlaceO2::class], version = 1)
+@Database(entities = [PlaceO2::class], version = 2)
 abstract class PlaceO2Database : RoomDatabase() {
 
     abstract fun placeDao(): PlaceDao
@@ -28,7 +28,7 @@ abstract class PlaceO2Database : RoomDatabase() {
                     context.applicationContext,
                     PlaceO2Database::class.java,
                     "place02_database"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 return instance
             }
