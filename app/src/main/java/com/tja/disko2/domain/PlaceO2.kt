@@ -16,7 +16,8 @@ data class PlaceO2(
     @ColumnInfo(name = "photo") var photo: String,
     @ColumnInfo(name = "type") var type: Int,
     @ColumnInfo(name = "favorite") var favorite: Int,
+    @ColumnInfo(name = "key_firebase") var key: String,
     @PrimaryKey(autoGenerate = true) var id: Int
 ) : Serializable {
-    constructor() : this("", "", "", "", "", 0, 0, 0)
+    constructor() : this("", "", "", "", "", 0, 0, "", 0)
 }
