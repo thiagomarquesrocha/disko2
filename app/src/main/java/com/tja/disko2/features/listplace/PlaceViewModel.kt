@@ -120,6 +120,7 @@ class PlaceViewModel(application: Application) : AndroidViewModel(application), 
             val packageManager: PackageManager = context.packageManager
             val i = Intent(Intent.ACTION_VIEW)
             val url = "https://api.whatsapp.com/send?phone=" + getNumberPhone(false, placeO2)
+            packageManager.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES)
             i.setPackage("com.whatsapp")
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             i.data = Uri.parse(url)

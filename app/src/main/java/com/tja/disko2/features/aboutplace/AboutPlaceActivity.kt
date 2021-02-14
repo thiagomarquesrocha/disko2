@@ -16,6 +16,7 @@ import com.tja.disko2.R
 import com.tja.disko2.domain.PlaceO2
 import com.tja.disko2.features.listplace.PlaceViewModel
 import com.tja.disko2.features.util.MyViewModelFactory
+import com.tja.disko2.features.util.Utils
 
 class AboutPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -101,16 +102,8 @@ class AboutPlaceActivity : AppCompatActivity(), View.OnClickListener {
             R.id.action_share -> {
 
                 val contentToShare =
-                    "Disk02 indica: ${placeO2.name} \n ${placeO2.address} \n ${placeO2.phone} "
-
-                val sendIntent: Intent = Intent().apply {
-                    action = Intent.ACTION_SEND
-                    putExtra(Intent.EXTRA_TEXT, contentToShare)
-                    type = "text/plain"
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                }
-                val shareIntent = Intent.createChooser(sendIntent, null)
-                startActivity(shareIntent)
+                    "DiskO2 indica: ${placeO2.name} \n ${placeO2.address} \n ${placeO2.phone} "
+                Utils.sendContentToShare(this, contentToShare);
             }
         }
 
