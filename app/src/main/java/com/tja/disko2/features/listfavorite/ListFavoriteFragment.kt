@@ -81,6 +81,10 @@ class ListFavoriteFragment : Fragment() {
             viewModel.favorite(placeO2)
         } else if (itemView.id == R.id.container) {
             AboutPlaceActivity.openAboutPlaceActivity(requireActivity(),placeO2)
+        }else if (itemView.id == R.id.card_call) {
+            viewModel.intentCall(placeO2)
+        } else if (itemView.id == R.id.card_wpp) {
+            viewModel.intentWpp(placeO2)
         }
     }
 
