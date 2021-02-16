@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.tja.disko2.domain.PlaceO2
 
-@Database(entities = [PlaceO2::class], version = 2)
+@Database(entities = [PlaceO2::class], version = 4)
 abstract class PlaceO2Database : RoomDatabase() {
 
     abstract fun placeDao(): PlaceDao

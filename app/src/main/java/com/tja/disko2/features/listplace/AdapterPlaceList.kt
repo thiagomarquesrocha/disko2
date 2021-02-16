@@ -89,6 +89,23 @@ class AdapterPlaceList() :
             ivFavorite.setOnClickListener { itemClick(placeO2, it) }
             container.setOnClickListener { itemClick(placeO2, it) }
 
+            // Disable call button
+            if(placeO2.call.isEmpty()){
+                cardCall.setEnabled(false)
+                cardCall.setAlpha(0.4F)
+            }else{
+                cardCall.setEnabled(true)
+                cardCall.setAlpha(1.0F)
+            }
+            // Disable whatsapp button
+            if(placeO2.whatsapp.isEmpty()){
+                cardWpp.setEnabled(false)
+                cardWpp.setAlpha(0.4F)
+            }else{
+                cardWpp.setEnabled(true)
+                cardWpp.setAlpha(1.0F)
+            }
+
         }
     }
 

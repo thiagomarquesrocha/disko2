@@ -59,7 +59,7 @@ class ListFavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel =
-            ViewModelProvider(this, MyViewModelFactory(requireActivity().application)).get(
+            ViewModelProvider(this, MyViewModelFactory(requireActivity(), requireActivity().application)).get(
                 PlaceViewModel::class.java
             )
 

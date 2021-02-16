@@ -32,7 +32,7 @@ class AboutPlaceActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_about_place)
 
         // ViewModel
-        viewModel = ViewModelProvider(this, MyViewModelFactory(application)).get(
+        viewModel = ViewModelProvider(this, MyViewModelFactory(this, application)).get(
             PlaceViewModel::class.java
         )
 

@@ -1,11 +1,17 @@
 package com.tja.disko2.features.listplace
 
+import android.R
+import android.app.Activity
 import android.app.Application
+import android.content.DialogInterface
 import android.content.Intent
-import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.net.Uri
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -21,12 +27,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class PlaceViewModel(application: Application) : AndroidViewModel(application), ValueEventListener {
+class PlaceViewModel(activity: Activity, application: Application) : AndroidViewModel(application), ValueEventListener {
 
     val allPlaces: LiveData<List<PlaceO2>>
     val allPlacesFavorite: LiveData<List<PlaceO2>>
     private val placeDao = PlaceO2Database.getInstance(application).placeDao()
     private val context = application
+    private val activity = activity
+    private val DELIMITER = "/"
 
     init {
         // Get all places saved in database
@@ -55,6 +63,8 @@ class PlaceViewModel(application: Application) : AndroidViewModel(application), 
                 placeO2.type,
                 placeO2.favorite,
                 placeO2.key,
+                placeO2.whatsapp,
+                placeO2.call,
                 placeO2.id
             )
             val value = placeDao.getPlaceByKey(placeAux.key)
@@ -95,6 +105,8 @@ class PlaceViewModel(application: Application) : AndroidViewModel(application), 
         placeLocal.photo = placeFirebase.photo
         placeLocal.type = placeFirebase.type
         placeLocal.email = placeFirebase.email
+        placeLocal.call = placeFirebase.call
+        placeLocal.whatsapp = placeFirebase.whatsapp
         return placeLocal
     }
 
@@ -109,7 +121,9 @@ class PlaceViewModel(application: Application) : AndroidViewModel(application), 
                 placeLocal.name == placeFirebase.name &&
                 placeLocal.phone == placeFirebase.phone &&
                 placeLocal.photo == placeFirebase.photo &&
-                placeLocal.type == placeFirebase.type
+                placeLocal.type == placeFirebase.type &&
+                placeLocal.call == placeFirebase.call &&
+                placeLocal.whatsapp == placeFirebase.whatsapp
     }
 
     /**
@@ -117,9 +131,38 @@ class PlaceViewModel(application: Application) : AndroidViewModel(application), 
      *  Inspired on https://stackoverflow.com/questions/19081654/send-text-to-specific-contact-programmatically-whatsapp
      */
     fun intentWpp(placeO2: PlaceO2) {
+        val split = placeO2.whatsapp.split(DELIMITER)
+        if(split.size > 1)
+            createListDialog(false, split.toTypedArray())
+        else
+            runIntentWhatsapp(cleanPhoneNumber(placeO2.whatsapp))
+    }
+
+    /**
+     * Intent to Call Dial
+     */
+    fun intentCall(placeO2: PlaceO2) {
+        val split = placeO2.call.split(DELIMITER)
+        if(split.size > 1)
+            createListDialog(true, split.toTypedArray())
+        else
+            runIntentCall(cleanPhoneNumber(placeO2.call))
+    }
+
+    fun runIntentCall(number: String){
+        try {
+            val dial = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number))
+            dial.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(dial)
+        } catch (e: java.lang.Exception) {
+            Toast.makeText(context, "Não foi possível iniciar o discador.", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun runIntentWhatsapp(number: String) {
         try {
             val i = Intent(Intent.ACTION_VIEW)
-            val url = "https://wa.me/" + getNumberPhone(false, placeO2)
+            val url = "https://wa.me/" + number
             i.setPackage("com.whatsapp")
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             i.data = Uri.parse(url)
@@ -134,32 +177,22 @@ class PlaceViewModel(application: Application) : AndroidViewModel(application), 
         }
     }
 
-    /**
-     * Intent to Call Dial
-     */
-    fun intentCall(placeO2: PlaceO2) {
-        try {
-            val dial = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + getNumberPhone(true, placeO2)))
-            dial.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(dial)
-        } catch (e: java.lang.Exception) {
-            Toast.makeText(context, "Erro ao tentar iniciar o discador.", Toast.LENGTH_LONG).show()
-        }
-    }
+    private fun createListDialog(isCall : Boolean, numbers: Array<String>) {
+        activity.let {
+            val builder = AlertDialog.Builder(it)
 
+            builder.setTitle("Escolha um telefone")
+            builder.setSingleChoiceItems(numbers, -1
+            ) { dialog, which ->
+                val number = cleanPhoneNumber(numbers.get(which))
+                if(isCall)
+                    runIntentCall(number)
+                else
+                    runIntentWhatsapp(number)
+            }
 
-    /**
-     * Get number phone
-     */
-    private fun getNumberPhone(isIntentCall: Boolean, placeO2: PlaceO2): String {
-        val split = placeO2.phone.split("/")
-        if (!isIntentCall) {
-            return cleanPhoneNumber(split[0])
+            builder.create().show()
         }
-        if (split.size > 1) {
-            return cleanPhoneNumber(split[1])
-        }
-        return cleanPhoneNumber(split[0])
     }
 
     /**

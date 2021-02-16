@@ -55,7 +55,7 @@ class ListPlaceFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // ViewModel
-        viewModel = ViewModelProvider(this, MyViewModelFactory(requireActivity().application)).get(
+        viewModel = ViewModelProvider(this, MyViewModelFactory(requireActivity(), requireActivity().application)).get(
             PlaceViewModel::class.java
         )
         viewModel.initFirebase()
