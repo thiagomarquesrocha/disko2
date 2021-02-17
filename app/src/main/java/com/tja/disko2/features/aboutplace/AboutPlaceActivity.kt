@@ -20,6 +20,7 @@ import com.tja.disko2.features.util.Utils
 
 class AboutPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
+    private lateinit var tvDescription: TextView
     private lateinit var cardCall: CardView
     private lateinit var cardWpp: CardView
     private lateinit var viewModel: PlaceViewModel
@@ -50,6 +51,7 @@ class AboutPlaceActivity : AppCompatActivity(), View.OnClickListener {
         tvTitle = findViewById(R.id.tv_title)
         tvAddress = findViewById(R.id.tv_address)
         tvType = findViewById(R.id.tv_type)
+        tvDescription = findViewById(R.id.tv_description)
         ivFavorite = findViewById(R.id.iv_favorite)
         tvTime = findViewById(R.id.tv_time)
         cardWpp = findViewById(R.id.card_wpp)
@@ -85,6 +87,17 @@ class AboutPlaceActivity : AppCompatActivity(), View.OnClickListener {
         Utils.displayButton(placeO2.whatsapp, cardWpp)
         // Disable call button
         Utils.displayButton(placeO2.call, cardCall)
+        // Description
+        displayDescription(placeO2)
+    }
+
+    private fun displayDescription(placeO2: PlaceO2) {
+        val desc = ArrayList<String>()
+        if(!placeO2.description.isEmpty())
+            desc.add(placeO2.description)
+        if(!placeO2.email.isEmpty())
+            desc.add("Email : ${placeO2.email}")
+        tvDescription.text = desc.joinToString("\n")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

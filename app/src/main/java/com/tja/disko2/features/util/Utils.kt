@@ -47,6 +47,9 @@ object Utils {
             7 -> {
                 tvTitle.text = tvTitle.context.getString(R.string.place_type_7)
             }
+            else ->{
+                tvTitle.text = tvTitle.context.getString(R.string.place_type_undefined)
+            }
         }
     }
 

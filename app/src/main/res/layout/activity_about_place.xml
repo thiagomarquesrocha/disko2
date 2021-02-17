@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/status_bar"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/white">
 
         <ImageView
@@ -31,13 +32,11 @@
             app:navigationIcon="@drawable/icon_back" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:background="@drawable/radius_about"
             android:padding="19dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_empty">
 
             <TextView
@@ -127,7 +126,17 @@
                         android:fontFamily="@font/roboto_light"
                         android:textColor="@color/black"
                         android:textSize="16sp"
-                        tools:text="Transporta e recarrega todos os tamanhos de cilindro. Preços: de R$ 150 a R$ 700" />
+                        tools:text="" />
+
+                    <TextView
+                        android:id="@+id/tv_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/roboto_light"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        tools:text="" />
 
                 </LinearLayout>
 
@@ -135,17 +144,18 @@
 
 
             <androidx.cardview.widget.CardView
-                android:layout_marginTop="100dp"
                 android:id="@+id/card_call"
                 android:layout_width="0dp"
                 android:layout_height="66dp"
-                android:layout_marginEnd="9dp"
                 app:cardBackgroundColor="@color/green_main"
                 app:cardCornerRadius="33dp"
                 app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/card_wpp"
+                app:layout_constraintHorizontal_bias="0.05"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/container">
+                app:layout_constraintTop_toBottomOf="@+id/container"
+                app:layout_constraintVertical_bias="1.0">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -156,15 +166,17 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_marginTop="100dp"
                 android:id="@+id/card_wpp"
                 android:layout_width="95dp"
                 android:layout_height="66dp"
+                android:layout_marginEnd="4dp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="28dp"
                 app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/container">
+                app:layout_constraintTop_toBottomOf="@+id/container"
+                app:layout_constraintVertical_bias="1.0">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -180,4 +192,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>
