@@ -5,6 +5,8 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.LinearLayout
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -21,6 +23,8 @@ import com.tja.disko2.features.util.MyViewModelFactory
 class ListFavoriteFragment : Fragment() {
 
     private lateinit var viewModel: PlaceViewModel
+    private lateinit var viewEmptyFavorite: LinearLayout
+    private lateinit var recyclerView: RecyclerView
     private var adapter: AdapterPlaceList = AdapterPlaceList()
 
     override fun onCreateView(
@@ -62,14 +66,21 @@ class ListFavoriteFragment : Fragment() {
             ViewModelProvider(this, MyViewModelFactory(requireActivity(), requireActivity().application)).get(
                 PlaceViewModel::class.java
             )
-
-        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerview)
+        viewEmptyFavorite = view.findViewById(R.id.imgEmptyFavorite)
+        recyclerView = view.findViewById(R.id.recyclerview)
         adapter = AdapterPlaceList()
         recyclerView.adapter = adapter
         adapter.setOnClickPlace { place_click, itemView -> clickFavorite(place_click, itemView) }
 
         viewModel.allPlacesFavorite.observe(this, Observer {
             it?.let {
+                if( it.size == 0 ){
+                    viewEmptyFavorite.visibility = View.VISIBLE
+                    recyclerView.visibility = View.INVISIBLE
+                }else{
+                    viewEmptyFavorite.visibility = View.INVISIBLE
+                    recyclerView.visibility = View.VISIBLE
+                }
                 adapter.setData(it)
             }
         })
