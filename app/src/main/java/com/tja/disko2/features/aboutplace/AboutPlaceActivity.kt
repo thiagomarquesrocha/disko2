@@ -20,12 +20,15 @@ import com.tja.disko2.features.util.Utils
 
 class AboutPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
+    private lateinit var cardCall: CardView
+    private lateinit var cardWpp: CardView
     private lateinit var viewModel: PlaceViewModel
     private lateinit var placeO2: PlaceO2
     private lateinit var ivFavorite: ImageView
     private lateinit var tvTitle: TextView
     private lateinit var tvAddress: TextView
     private lateinit var tvType: TextView
+    private lateinit var tvTime: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,8 +51,9 @@ class AboutPlaceActivity : AppCompatActivity(), View.OnClickListener {
         tvAddress = findViewById(R.id.tv_address)
         tvType = findViewById(R.id.tv_type)
         ivFavorite = findViewById(R.id.iv_favorite)
-        val cardWpp: CardView = findViewById(R.id.card_wpp)
-        val cardCall: CardView = findViewById(R.id.card_call)
+        tvTime = findViewById(R.id.tv_time)
+        cardWpp = findViewById(R.id.card_wpp)
+        cardCall = findViewById(R.id.card_call)
         cardWpp.setOnClickListener(this)
         cardCall.setOnClickListener(this)
         ivFavorite.setOnClickListener(this)
@@ -70,22 +74,17 @@ class AboutPlaceActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         tvTitle.text = placeO2.name
-        tvAddress.text =
-            if (placeO2.address.isEmpty()) getString(R.string.place_not_address) else placeO2.address
+        // Adress
+        Utils.displayAdress(placeO2, tvAddress)
+        // Time
+        Utils.displayTime(placeO2, tvTime)
+        // Status
+        Utils.displayPlaceStatus(placeO2, tvType)
 
-        when (placeO2.type) {
-            1 -> {
-                tvType.text = getString(R.string.place_type_1)
-            }
-            2 -> {
-                tvType.text = getString(R.string.place_type_2)
-            }
-            3 -> {
-                tvType.text = getString(R.string.place_type_3)
-            }
-        }
-
-
+        // Disable whatsapp button
+        Utils.displayButton(placeO2.whatsapp, cardWpp)
+        // Disable call button
+        Utils.displayButton(placeO2.call, cardCall)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

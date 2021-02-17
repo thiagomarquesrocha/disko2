@@ -30,5 +30,6 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="about_app_text">O DiskO2 foi desenvolvido com o intuito de auxiliar a populacao a obter informacões de estabelecimentos que forneçam cilindro, recargas entre outros serviços de saúde. Devido ao colapso no sistema de saúde do Amazonas, muitas famílias optam pelo tratamento domicilar. Pensando nessas famílias, o DiskO2 busca reunir todas informações de locais que trabalhem com cilindros de oxigênio.\n\nO DiskO2 utiliza dados públicos disponibilizados por ferramentas de pesquisa e redes sociais como Google e Twitter. Não é de responsabilidade da aplicação qualquer inconsistência ou erro nos dados. Reforçamos o caráter público e útil dos dados a população do Estado do Amazonas que diante de possíveis irregularidade nas informações entrem em contato com os órgãos responsáveis para atualização das informações.\n\nPara dúvidas, sugestões, ou qualquer outra informação disponibilizamos o contato da nossa equipe incjarvis2@gmail.com.</string>
     <string name="menu_about">Sobre</string>
+    <string name="place_not_time">Não informado</string>
 
 </resources>

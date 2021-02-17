@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.tja.disko2.R
 import com.tja.disko2.domain.PlaceO2
+import com.tja.disko2.features.util.Utils
 
 class AdapterPlaceList() :
     RecyclerView.Adapter<AdapterPlaceList.ViewHolder>(), Filterable {
@@ -55,13 +56,18 @@ class AdapterPlaceList() :
             tvTitle.text = placeO2.name
             val tvSubTitle = itemView.findViewById<TextView>(R.id.tv_sutitle)
             val tvLocation = itemView.findViewById<TextView>(R.id.tv_location)
+            val tvTime = itemView.findViewById<TextView>(R.id.tv_time)
 
-            tvLocation.text =
-                if (placeO2.address.isEmpty()) itemView.context.getString(R.string.place_not_address) else placeO2.address
+            // Adress
+            Utils.displayAdress(placeO2, tvLocation)
+
             val ivFavorite = itemView.findViewById<ImageView>(R.id.iv_favorite)
             val container = itemView.findViewById<ConstraintLayout>(R.id.container)
             val cardWpp = itemView.findViewById<CardView>(R.id.card_wpp)
             val cardCall = itemView.findViewById<CardView>(R.id.card_call)
+
+            // Time
+            Utils.displayTime(placeO2, tvTime)
 
             //Favorite
             if (placeO2.favorite == 1) {
@@ -71,29 +77,7 @@ class AdapterPlaceList() :
             }
 
             //Types
-            when (placeO2.type) {
-                1 -> {
-                    tvSubTitle.text = itemView.context.getString(R.string.place_type_1)
-                }
-                2 -> {
-                    tvSubTitle.text = itemView.context.getString(R.string.place_type_2)
-                }
-                3 -> {
-                    tvSubTitle.text = itemView.context.getString(R.string.place_type_3)
-                }
-                4 -> {
-                    tvSubTitle.text = itemView.context.getString(R.string.place_type_4)
-                }
-                5 -> {
-                    tvSubTitle.text = itemView.context.getString(R.string.place_type_5)
-                }
-                6 -> {
-                    tvSubTitle.text = itemView.context.getString(R.string.place_type_6)
-                }
-                7 -> {
-                    tvSubTitle.text = itemView.context.getString(R.string.place_type_7)
-                }
-            }
+            Utils.displayPlaceStatus(placeO2, tvSubTitle)
 
             //Clicks
             cardCall.setOnClickListener { itemClick(placeO2, it) }
@@ -101,23 +85,10 @@ class AdapterPlaceList() :
             ivFavorite.setOnClickListener { itemClick(placeO2, it) }
             container.setOnClickListener { itemClick(placeO2, it) }
 
-            // Disable call button
-            if(placeO2.call.isEmpty()){
-                cardCall.setEnabled(false)
-                cardCall.setAlpha(0.4F)
-            }else{
-                cardCall.setEnabled(true)
-                cardCall.setAlpha(1.0F)
-            }
             // Disable whatsapp button
-            if(placeO2.whatsapp.isEmpty()){
-                cardWpp.setEnabled(false)
-                cardWpp.setAlpha(0.4F)
-            }else{
-                cardWpp.setEnabled(true)
-                cardWpp.setAlpha(1.0F)
-            }
-
+            Utils.displayButton(placeO2.whatsapp, cardWpp)
+            // Disable call button
+            Utils.displayButton(placeO2.call, cardCall)
         }
     }
 
