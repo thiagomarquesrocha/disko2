@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.tja.disko2.R
 
@@ -19,7 +20,7 @@ class AboutAppActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
+        findViewById<CardView>(R.id.card_email).setOnClickListener { view ->
             val subject = ""
             val email = Intent(Intent.ACTION_SEND)
             email.putExtra(Intent.EXTRA_EMAIL, arrayOf<String>("incjarvis2@gmail.com"))
