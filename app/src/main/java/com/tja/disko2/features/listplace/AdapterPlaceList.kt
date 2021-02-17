@@ -81,6 +81,18 @@ class AdapterPlaceList() :
                 3 -> {
                     tvSubTitle.text = itemView.context.getString(R.string.place_type_3)
                 }
+                4 -> {
+                    tvSubTitle.text = itemView.context.getString(R.string.place_type_4)
+                }
+                5 -> {
+                    tvSubTitle.text = itemView.context.getString(R.string.place_type_5)
+                }
+                6 -> {
+                    tvSubTitle.text = itemView.context.getString(R.string.place_type_6)
+                }
+                7 -> {
+                    tvSubTitle.text = itemView.context.getString(R.string.place_type_7)
+                }
             }
 
             //Clicks

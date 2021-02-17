@@ -19,7 +19,9 @@ data class PlaceO2(
     @ColumnInfo(name = "key_firebase") var key: String,
     @ColumnInfo(name = "whatsapp") var whatsapp: String = "",
     @ColumnInfo(name = "call") var call: String = "",
+    @ColumnInfo(name = "time") var time: String = "",
+    @ColumnInfo(name = "description") var description: String = "",
     @PrimaryKey(autoGenerate = true) var id: Int
 ) : Serializable {
-    constructor() : this("", "", "", "", "", 0, 0, "", "","",0)
+    constructor() : this("", "", "", "", "", 0, 0, "", "","", "", "",0)
 }

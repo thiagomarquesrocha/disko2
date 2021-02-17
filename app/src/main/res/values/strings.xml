@@ -19,7 +19,11 @@
     <!-- Place Type -->
     <string name="place_type_1">Oxigênio medicinal</string>
     <string name="place_type_2">Cilindros e recargas</string>
-    <string name="place_type_3">Atendimento em casa, cilindros e recargas</string>
+    <string name="place_type_3">Atendimento domiciliar e outros serviços de saúde</string>
+    <string name="place_type_4">Recargas de cilindro</string>
+    <string name="place_type_5">Cilindros, recargas e fisioterapia</string>
+    <string name="place_type_6">Equipamentos e atendimento para oxigenoterapia</string>
+    <string name="place_type_7">Gases industriais e medicinal</string>
     <string name="title_activity_about_app">Sobre</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>

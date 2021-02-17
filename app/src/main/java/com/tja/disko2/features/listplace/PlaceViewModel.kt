@@ -1,20 +1,13 @@
 package com.tja.disko2.features.listplace
 
-import android.R
 import android.app.Activity
 import android.app.Application
-import android.content.DialogInterface
 import android.content.Intent
-import android.content.res.Resources
 import android.net.Uri
 import android.util.Log
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -65,6 +58,8 @@ class PlaceViewModel(activity: Activity, application: Application) : AndroidView
                 placeO2.key,
                 placeO2.whatsapp,
                 placeO2.call,
+                placeO2.time,
+                placeO2.description,
                 placeO2.id
             )
             val value = placeDao.getPlaceByKey(placeAux.key)
@@ -107,6 +102,8 @@ class PlaceViewModel(activity: Activity, application: Application) : AndroidView
         placeLocal.email = placeFirebase.email
         placeLocal.call = placeFirebase.call
         placeLocal.whatsapp = placeFirebase.whatsapp
+        placeLocal.time = placeFirebase.time
+        placeLocal.description = placeFirebase.description
         return placeLocal
     }
 
@@ -123,7 +120,9 @@ class PlaceViewModel(activity: Activity, application: Application) : AndroidView
                 placeLocal.photo == placeFirebase.photo &&
                 placeLocal.type == placeFirebase.type &&
                 placeLocal.call == placeFirebase.call &&
-                placeLocal.whatsapp == placeFirebase.whatsapp
+                placeLocal.whatsapp == placeFirebase.whatsapp &&
+                placeLocal.time == placeFirebase.time &&
+                placeLocal.description == placeFirebase.description
     }
 
     /**
@@ -151,7 +150,7 @@ class PlaceViewModel(activity: Activity, application: Application) : AndroidView
 
     fun runIntentCall(number: String){
         try {
-            val dial = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number))
+            val dial = Intent(Intent.ACTION_DIAL, Uri.parse("tel:+" + number))
             dial.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(dial)
         } catch (e: java.lang.Exception) {
@@ -209,11 +208,32 @@ class PlaceViewModel(activity: Activity, application: Application) : AndroidView
     }
 
     override fun onDataChange(snapshot: DataSnapshot) {
+        val firebasePlaces = ArrayList<String>()
         for (child in snapshot.children) {
-            Log.d("COSTA", "teste = ${child.key}")
+            Log.d("COSTA", "chave = ${child.key}")
             val place = child.getValue(PlaceO2::class.java)
             place?.key = child.key.toString()
-            place?.let { saveInDatabaseLocal(it) }
+            place?.let {
+                firebasePlaces.add(it.key)
+                saveInDatabaseLocal(it)
+            }
+        }
+        detelePlaces(firebasePlaces)
+    }
+
+    private fun detelePlaces(firebasePlaces: java.util.ArrayList<String>) {
+        val localPlaces = (allPlaces.value as ArrayList<PlaceO2>).toMutableList()
+        val deletedPlaces = localPlaces.filter { !firebasePlaces.contains(it.key) }
+        Log.d("COSTA", "Total deleted ${deletedPlaces.size}")
+        for (child in deletedPlaces){
+            deletePlace(child)
+        }
+    }
+
+    private fun deletePlace(child: PlaceO2) =  viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            Log.d("COSTA", "chave deleted = ${child.key}")
+            placeDao.delete(child)
         }
     }
 

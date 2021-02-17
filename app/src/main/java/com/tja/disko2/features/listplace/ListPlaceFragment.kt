@@ -72,7 +72,6 @@ class ListPlaceFragment : Fragment() {
                 adapter.setData(places)
             }
         })
-
     }
 
     //Click in item from RecyclerView
