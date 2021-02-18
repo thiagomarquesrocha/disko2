@@ -34,6 +34,6 @@
     <string name="place_type_undefined">Não Informado</string>
     <string name="title_empty_favorite">Você não possui favoritos ainda!</string>
     <string name="subtitle_empty_favorite">Adicione locais a sua lista para encontrá-los quando quiser</string>
-    <string name="txt_btn_send_email">Enviar e-email</string>
+    <string name="txt_btn_send_email">Enviar e-mail</string>
 
 </resources>

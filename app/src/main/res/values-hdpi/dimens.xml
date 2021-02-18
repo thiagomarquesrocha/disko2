@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="about_app_desc_size">11sp</dimen>
+    <dimen name="card_email_width">225dp</dimen>
+    <dimen name="card_email_height">50dp</dimen>
+    <dimen name="txt_btn_send_email_size">15sp</dimen>
+</resources>

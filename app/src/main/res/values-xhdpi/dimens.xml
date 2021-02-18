@@ -1,7 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="about_app_desc_size">16sp</dimen>
     <dimen name="card_email_width">265dp</dimen>
     <dimen name="card_email_height">70dp</dimen>
     <dimen name="txt_btn_send_email_size">17sp</dimen>
-    <dimen name="padding_content_app">32dp</dimen>
 </resources>

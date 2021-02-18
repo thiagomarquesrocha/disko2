@@ -3,20 +3,58 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:paddingLeft="@dimen/padding_content_app"
+    android:paddingTop="@dimen/padding_content_app"
+    android:paddingStart="@dimen/padding_content_app"
+    android:paddingEnd="@dimen/padding_content_app"
+    android:paddingRight="@dimen/padding_content_app"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
 
     <TextView
         android:id="@+id/about_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_height="0dp"
+        android:text="@string/about_app_text"
+        android:textSize="@dimen/about_app_desc_size"
+        app:layout_constraintBottom_toTopOf="@+id/card_email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_email"
+        android:layout_width="@dimen/card_email_width"
+        android:layout_height="@dimen/card_email_height"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginTop="20dp"
+        app:cardBackgroundColor="#5A7831"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginBottom="19dp"
-        android:textSize="16sp"
-        android:padding="16dp"
-        android:text="@string/about_app_text" />
+        app:layout_constraintTop_toBottomOf="@+id/about_text"
+        app:tint="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_dialog_email" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:text="@string/txt_btn_send_email"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_btn_send_email_size" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
