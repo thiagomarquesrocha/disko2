@@ -130,6 +130,7 @@
                         tools:text="Transporta e recarrega todos os tamanhos de cilindro. Preços: de R$ 150 a R$ 700" />
 
                     <TextView
+                        android:autoLink="web|email"
                         android:id="@+id/tv_description"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

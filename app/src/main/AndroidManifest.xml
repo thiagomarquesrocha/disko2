@@ -12,10 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiskO2">
         <activity
+            android:screenOrientation="portrait"
             android:name=".features.aboutapp.AboutAppActivity"
             android:label="@string/title_activity_about_app"
             android:theme="@style/Theme.DiskO2.NoActionBar" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".features.splash.SplashActivity"
             android:theme="@style/ThemeSplash">
             <intent-filter>
@@ -24,8 +26,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".features.listplace.MainActivity" />
-        <activity android:name=".features.aboutplace.AboutPlaceActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".features.listplace.MainActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".features.aboutplace.AboutPlaceActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
