@@ -111,7 +111,7 @@
             android:layout_width="57dp"
             android:layout_height="38dp"
             android:layout_marginTop="13dp"
-            android:layout_marginEnd="22dp"
+            android:layout_marginEnd="10dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="21dp"
             app:cardElevation="0dp"
