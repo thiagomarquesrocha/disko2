@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,15 +8,19 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:layout_height="0dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/iv_empty"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:src="@drawable/img_about_place"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="@dimen/about_place_img_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,13 +36,15 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:background="@drawable/radius_about"
             android:padding="19dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_empty">
+            app:layout_constraintTop_toBottomOf="@+id/iv_empty"
+            app:layout_constraintVertical_bias="1.0">
 
             <TextView
                 android:id="@+id/tv_title"
@@ -48,7 +54,7 @@
                 android:fontFamily="@font/roboto_medium"
                 android:maxLines="2"
                 android:textColor="@color/black"
-                android:textSize="31sp"
+                android:textSize="@dimen/about_place_title_size"
                 app:layout_constraintEnd_toStartOf="@+id/iv_favorite"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -68,11 +74,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="29dp"
                 android:drawablePadding="10dp"
-                android:ellipsize="end"
                 android:fontFamily="@font/roboto_light"
                 android:maxLines="2"
+                android:ellipsize="end"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="@dimen/about_place_address_size"
                 app:drawableStartCompat="@drawable/icon_marker"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title"
@@ -86,10 +92,10 @@
                 android:drawablePadding="10dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/roboto_light"
-                android:maxLines="2"
+                android:maxLines="1"
                 android:text="@string/place_hour"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="@dimen/about_place_time_size"
                 app:drawableStartCompat="@drawable/icon_clock"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_address" />
@@ -101,7 +107,9 @@
                 android:layout_marginTop="29dp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_max="170dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_time">
 
@@ -117,28 +125,20 @@
                         android:fontFamily="@font/roboto_medium"
                         android:text="@string/place_status"
                         android:textColor="@color/black"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/about_place_status_title_size" />
 
                     <TextView
                         android:id="@+id/tv_type"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:fontFamily="@font/roboto_light"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        tools:text="Transporta e recarrega todos os tamanhos de cilindro. Preços: de R$ 150 a R$ 700" />
-
-                    <TextView
                         android:autoLink="web|email"
-                        android:id="@+id/tv_description"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
                         android:fontFamily="@font/roboto_light"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        tools:text="" />
+                        android:maxLines="5"
+                        android:ellipsize="end"
+                        android:textSize="@dimen/about_place_type_size"
+                        tools:text="Transporta e recarrega todos os tamanhos de cilindro. Preços: de R$ 150 a R$ 700" />
 
                 </LinearLayout>
 
@@ -148,15 +148,14 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_call"
                 android:layout_width="0dp"
-                android:layout_height="66dp"
-                android:layout_marginTop="100dp"
+                android:layout_height="@dimen/about_place_btn_call_size"
                 android:layout_marginEnd="9dp"
                 app:cardBackgroundColor="@color/green_main"
-                app:cardCornerRadius="33dp"
+                app:cardCornerRadius="@dimen/about_place_btn_radius"
                 app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/card_wpp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/container">
+                app:layout_constraintStart_toStartOf="parent">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -169,13 +168,12 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_wpp"
                 android:layout_width="95dp"
-                android:layout_height="66dp"
-                android:layout_marginTop="100dp"
+                android:layout_height="@dimen/about_place_btn_call_size"
                 app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="28dp"
+                app:cardCornerRadius="@dimen/about_place_btn_radius"
                 app:cardElevation="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/container">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -191,4 +189,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

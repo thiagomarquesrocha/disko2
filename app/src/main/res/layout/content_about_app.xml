@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingStart="@dimen/padding_content_app"
     android:paddingLeft="@dimen/padding_content_app"
     android:paddingTop="@dimen/padding_content_app"
-    android:paddingStart="@dimen/padding_content_app"
     android:paddingEnd="@dimen/padding_content_app"
     android:paddingRight="@dimen/padding_content_app"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -16,6 +16,7 @@
         android:layout_height="0dp"
         android:text="@string/about_app_text"
         android:textSize="@dimen/about_app_desc_size"
+        android:autoLink="web|email"
         app:layout_constraintBottom_toTopOf="@+id/card_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5" />
@@ -27,7 +28,7 @@
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginTop="20dp"
         app:cardBackgroundColor="#5A7831"
-        app:cardCornerRadius="28dp"
+        app:cardCornerRadius="@dimen/about_app_btn_radius"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

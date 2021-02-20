@@ -3,5 +3,22 @@
     <dimen name="about_app_desc_size">11sp</dimen>
     <dimen name="card_email_width">225dp</dimen>
     <dimen name="card_email_height">50dp</dimen>
+    <dimen name="card_email_padding">70dp</dimen>
     <dimen name="txt_btn_send_email_size">15sp</dimen>
+    <dimen name="about_place_title_size">20sp</dimen>
+    <dimen name="about_place_body_content_size">13sp</dimen>
+    <dimen name="about_place_address_size">@dimen/about_place_body_content_size</dimen>
+    <dimen name="about_place_time_size">@dimen/about_place_body_content_size</dimen>
+    <dimen name="about_place_status_title_size">@dimen/about_place_body_content_size</dimen>
+    <dimen name="about_place_type_size">@dimen/about_place_body_content_size</dimen>
+    <dimen name="about_place_btn_call_size">46dp</dimen>
+    <item name="about_place_img_size" type="dimen" format="float">0.20</item>
+    <dimen name="favorite_title_size">24sp</dimen>
+    <dimen name="favorite_subtitle_size">14sp</dimen>
+    <dimen name="place_item_title_size">16sp</dimen>
+    <dimen name="place_item_subtitle_size">13sp</dimen>
+    <dimen name="place_item_btn_height">32dp</dimen>
+    <dimen name="place_item_btn_radius">14dp</dimen>
+    <dimen name="about_place_btn_radius">18dp</dimen>
+    <dimen name="about_app_btn_radius">18dp</dimen>
 </resources>

@@ -4,4 +4,14 @@
     <dimen name="card_email_height">70dp</dimen>
     <dimen name="txt_btn_send_email_size">17sp</dimen>
     <dimen name="padding_content_app">32dp</dimen>
+    <dimen name="about_place_btn_call_size">66dp</dimen>
+    <dimen name="favorites_empty_margin_bottom">70dp</dimen>
+    <dimen name="favorite_title_size">28sp</dimen>
+    <dimen name="favorite_subtitle_size">17sp</dimen>
+    <dimen name="place_item_title_size">21sp</dimen>
+    <dimen name="place_item_subtitle_size">14sp</dimen>
+    <dimen name="place_item_btn_height">38dp</dimen>
+    <dimen name="place_item_btn_radius">24dp</dimen>
+    <dimen name="about_place_btn_radius">28dp</dimen>
+    <dimen name="about_app_btn_radius">28dp</dimen>
 </resources>
